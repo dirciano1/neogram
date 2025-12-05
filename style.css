@@ -94,6 +94,8 @@ body {
   padding: 5px 0;
 }
 
+
+
 .carousel {
   display: flex;
   overflow: hidden;
@@ -143,6 +145,10 @@ body {
   font-size: 1.25rem;
 }
 
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
 
 /* ==============================
    SETAS LATERAIS
@@ -229,3 +235,4 @@ body {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
