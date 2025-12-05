@@ -1,0 +1,231 @@
+/* ==============================
+   FUNDO ANIMADO SUAVE
+============================== */
+.bg-animation {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(34,197,94,0.12) 0%, transparent 45%),
+              radial-gradient(circle at 80% 70%, rgba(56,189,248,0.12) 0%, transparent 50%);
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: -1;
+  animation: bgMove 12s infinite alternate ease-in-out;
+}
+
+@keyframes bgMove {
+  0% { transform: scale(1.0) translate(0,0); }
+  100% { transform: scale(1.15) translate(-40px,20px); }
+}
+
+
+p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.18rem;
+  font-weight: 300;
+  color: #d6d6d6;
+  line-height: 1.65rem;
+  letter-spacing: 0.3px;
+
+  margin: 0 auto;
+  max-width: 720px;
+
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ==============================
+   BASE
+============================== */
+body {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  color: #e5e5e5;
+  text-align: center;
+  background: #000;
+}
+
+
+/* ==============================
+   CABEÇALHO
+============================== */
+.header {
+  padding: 40px 20px 20px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.logo-header {
+  width: 70px;
+}
+
+.title {
+  font-size: 2.6rem;
+  background: linear-gradient(90deg, #22c55e, #38bdf8);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin: 0;
+}
+
+.subtitle {
+  color: #b0b0b0;
+  margin-top: 4px;
+  text-align: left;
+}
+
+
+/* ==============================
+   SLIDER PREMIUM
+============================== */
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 5px auto 20px;
+  padding: 5px 0;
+}
+
+.carousel {
+  display: flex;
+  overflow: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+}
+
+.slide {
+  width: 100%;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* ==============================
+   CARD 3D PREMIUM
+============================== */
+.card {
+  width: 300px;
+  background: rgba(5, 13, 30, 0.85);
+  border-radius: 22px;
+  padding: 38px 28px;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  backdrop-filter: blur(10px);
+
+  transform: perspective(600px) rotateY(0deg);
+  transition: 0.4s ease;
+
+  box-shadow: 0 25px 60px rgba(0,0,0,0.55);
+}
+
+.card:hover {
+  transform: perspective(600px) rotateY(8deg) translateY(-12px);
+  box-shadow: 0 35px 90px rgba(34,197,94,0.45);
+}
+
+.card img {
+  width: 160px;
+  margin-bottom: 16px;
+}
+
+.card h3 {
+  margin-top: 6px;
+  font-size: 1.25rem;
+}
+
+
+/* ==============================
+   SETAS LATERAIS
+============================== */
+.arrow {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  background: rgba(20, 50, 35, 0.6);
+  border: 1px solid #22c55e55;
+  color: #22c55e;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  font-size: 26px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  z-index:999;
+}
+
+.arrow:hover {
+  background: rgba(34, 197, 94, 0.4);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.left { left: 20px; }
+.right { right: 20px; }
+
+
+/* ==============================
+   INDICADORES
+============================== */
+.indicators {
+  margin-top: -10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #416647;
+  transition: 0.3s;
+}
+
+.dot.active {
+  background: #22c55e;
+  transform: scale(1.25);
+}
+
+
+/* ==============================
+   DESCRIÇÃO DO PRODUTO
+============================== */
+.product-description {
+  max-width:900px;
+  margin: 10px auto 40px;
+  padding: 30px 20px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 16px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.6s ease;
+}
+
+.product-description h2 {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  background: linear-gradient(90deg, #22c55e, #38bdf8);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.product-description p {
+  font-size: 1.15rem;
+  color: #c9c9c9;
+  line-height: 1.55rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
