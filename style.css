@@ -146,8 +146,9 @@ body {
 }
 
 .card-link {
-  text-decoration: none;
-  color: inherit;
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
 }
 
 /* ==============================
@@ -235,4 +236,5 @@ body {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
 
