@@ -47,7 +47,7 @@ body {
   color: #e5e5e5;
   text-align: center;
   background: #000;
-   zoom: 0.83 !important;
+  zoom: 0.83 !important;
 }
 
 
@@ -113,7 +113,9 @@ body {
   display: flex;
   justify-content: center;
 }
-
+@media (max-width: 729px) {
+    body{zoom: 1 !important;
+    } 
 
 /* ==============================
    CARD 3D PREMIUM
@@ -238,6 +240,7 @@ body {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
 
 
 
