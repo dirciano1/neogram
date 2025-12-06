@@ -19,6 +19,9 @@
 }
 
 
+/* ==============================
+   TEXTO PARÁGRAFOS
+============================== */
 p {
   font-family: "Poppins", sans-serif;
   font-size: 1.18rem;
@@ -37,6 +40,7 @@ p {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
 
 /* ==============================
    BASE
@@ -75,7 +79,7 @@ body {
   -webkit-background-clip: text;
   color: transparent;
   margin: 0;
-   margin-right: 17px;
+  margin-right: 17px;
 }
 
 .subtitle {
@@ -96,8 +100,6 @@ body {
   padding: 5px 0;
 }
 
-
-
 .carousel {
   display: flex;
   overflow: hidden;
@@ -113,9 +115,17 @@ body {
   display: flex;
   justify-content: center;
 }
+
+
+/* ==============================
+   RESPONSIVO
+============================== */
 @media (max-width: 729px) {
-    body{zoom: 1 !important;
-    } 
+  body {
+    zoom: 1 !important;
+  }
+}
+
 
 /* ==============================
    CARD 3D PREMIUM
@@ -155,6 +165,7 @@ body {
   display: block;
 }
 
+
 /* ==============================
    SETAS LATERAIS
 ============================== */
@@ -171,7 +182,7 @@ body {
   font-size: 26px;
   cursor: pointer;
   transition: 0.25s ease;
-  z-index:999;
+  z-index: 999;
 }
 
 .arrow:hover {
@@ -211,7 +222,7 @@ body {
    DESCRIÇÃO DO PRODUTO
 ============================== */
 .product-description {
-  max-width:900px;
+  max-width: 900px;
   margin: 10px auto 40px;
   padding: 30px 20px;
   background: rgba(0, 0, 0, 0.35);
@@ -235,20 +246,3 @@ body {
   color: #c9c9c9;
   line-height: 1.55rem;
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-}
-
-
-
-
-
-
-
-
-
-
