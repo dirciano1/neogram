@@ -35,15 +35,22 @@
       }
     </script>
     <script>
-  // Ouve mensagens vindas do Betgram (iframe)
   window.addEventListener("message", (event) => {
     if (event.data === "fechar_pagamento") {
-      console.log("Fechando iframe via postMessage…");
+      console.log("Fechando janela via postMessage…");
 
-      // Redireciona para fora da página de pagamentos
-      window.location.href = "https://neogram.com.br"; 
-      // ou: window.location.href = "../"; dependendo do seu domínio
+      // Tenta fechar a aba normalmente
+      window.close();
 
+      // Caso a aba não permita fechar (navegadores com bloqueio)
+      try {
+        window.open("", "_self");
+        window.close();
+      } catch (e) {}
+
+      // Último fallback: envia de volta pro chamador que pode fechar
+      // (TalkGram pode reagir se quiser futuramente)
+      window.parent.postMessage("fechamento_falhou", "*");
     }
   });
 </script>
