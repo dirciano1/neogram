@@ -20,7 +20,7 @@
 
 
 /* ==============================
-   TEXTO PARÁGRAFOS
+   TEXTOS PARÁGRAFOS
 ============================== */
 p {
   font-family: "Poppins", sans-serif;
@@ -29,10 +29,8 @@ p {
   color: #d6d6d6;
   line-height: 1.65rem;
   letter-spacing: 0.3px;
-
   margin: 0 auto;
   max-width: 720px;
-
   animation: fadeIn 0.5s ease;
 }
 
@@ -118,16 +116,6 @@ body {
 
 
 /* ==============================
-   RESPONSIVO
-============================== */
-@media (max-width: 729px) {
-  body {
-    zoom: 1 !important;
-  }
-}
-
-
-/* ==============================
    CARD 3D PREMIUM
 ============================== */
 .card {
@@ -137,10 +125,8 @@ body {
   padding: 38px 28px;
   border: 1px solid rgba(34, 197, 94, 0.3);
   backdrop-filter: blur(10px);
-
   transform: perspective(600px) rotateY(0deg);
   transition: 0.4s ease;
-
   box-shadow: 0 25px 60px rgba(0,0,0,0.55);
 }
 
@@ -245,4 +231,25 @@ body {
   font-size: 1.15rem;
   color: #c9c9c9;
   line-height: 1.55rem;
+}
+
+
+/* ==============================
+   RESPONSIVO
+============================== */
+@media (max-width: 729px) {
+  body {
+    zoom: 1 !important;
+  }
+
+  .arrow {
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+  }
+
+  .card {
+    width: 270px;
+    padding: 32px 22px;
+  }
 }
