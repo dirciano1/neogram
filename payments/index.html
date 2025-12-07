@@ -34,5 +34,18 @@
         `;
       }
     </script>
+    <script>
+  // Ouve mensagens vindas do Betgram (iframe)
+  window.addEventListener("message", (event) => {
+    if (event.data === "fechar_pagamento") {
+      console.log("Fechando iframe via postMessage…");
+
+      // Redireciona para fora da página de pagamentos
+      window.location.href = "https://neogram.com.br"; 
+      // ou: window.location.href = "../"; dependendo do seu domínio
+
+    }
+  });
+</script>
   </body>
 </html>
