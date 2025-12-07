@@ -8,7 +8,7 @@ const descriptionBox = document.getElementById("product-description");
 const descriptions = [
   {
     name: "BetGram",
-    text: "Sistema avançado de inteligência esportiva que identifica oportunidades, analisa riscos e entrega apostas estratégicas"
+    text: "Sistema avançado de inteligência esportiva que identifica oportunidades, analisa riscos e entrega apostas estratégicas."
   },
   {
     name: "BusinessGram",
@@ -31,15 +31,18 @@ const descriptions = [
 
 /* ATUALIZAÇÃO DO SLIDE + TEXTO */
 function updateSlider() {
+  const slideWidth = slides[0].clientWidth; // Corrige o bug do tamanho
+
   carousel.scrollTo({
-    left: current * window.innerWidth,
+    left: current * slideWidth,
     behavior: "smooth"
   });
 
+  // Atualiza indicador
   dots.forEach(d => d.classList.remove("active"));
-  dots[current].classList.add("active");
+  if (dots[current]) dots[current].classList.add("active");
 
-  // Atualizar texto
+  // Atualiza texto
   descriptionBox.innerHTML = `
     <h2>${descriptions[current].name}</h2>
     <p>${descriptions[current].text}</p>
@@ -65,5 +68,9 @@ setInterval(() => {
 }, 6000);
 
 
-/* GARANTIR QUE AJUSTE AO REDIMENSIONAR */
+/* REDIMENSIONAMENTO */
 window.addEventListener("resize", updateSlider);
+
+
+/* INICIALIZAÇÃO */
+updateSlider();
