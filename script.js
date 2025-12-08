@@ -4,7 +4,7 @@ const dots = document.querySelectorAll(".dot");
 const carousel = document.getElementById("carousel");
 const descriptionBox = document.getElementById("product-description");
 
-/* TEXTOS PARA CADA PRODUTO */
+/* TEXTOS PARA CADA PRODUTO — ORDEM ALFABÉTICA */
 const descriptions = [
   {
     name: "BetGram",
@@ -19,6 +19,10 @@ const descriptions = [
     text: "Plataforma inteligente para análise de criptomoedas que monitora tendências, identifica movimentos e otimiza decisões."
   },
   {
+    name: "CupoGram",
+    text: "Localizador inteligente de cupons e ofertas que encontra descontos reais, promoções válidas e melhores oportunidades automaticamente."
+  },
+  {
     name: "InvestGram",
     text: "Ferramenta inteligente de suporte financeiro que avalia cenários, analisa ativos e orienta decisões estratégicas com precisão."
   },
@@ -27,7 +31,6 @@ const descriptions = [
     text: "Assistente dedicado ao ecossistema NeoGram que esclarece dúvidas, explica recursos, orienta usos e conecta você aos produtos."
   }
 ];
-
 
 /* ATUALIZAÇÃO DO SLIDE + TEXTO */
 function updateSlider() {
@@ -49,7 +52,6 @@ function updateSlider() {
   `;
 }
 
-
 /* NAVEGAÇÃO */
 function nextSlide() {
   current = (current + 1) % slides.length;
@@ -61,16 +63,13 @@ function prevSlide() {
   updateSlider();
 }
 
-
 /* AUTO SLIDE */
 setInterval(() => {
   nextSlide();
 }, 6000);
 
-
 /* REDIMENSIONAMENTO */
 window.addEventListener("resize", updateSlider);
-
 
 /* INICIALIZAÇÃO */
 updateSlider();
