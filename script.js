@@ -19,7 +19,7 @@ const descriptions = [
     text: "Plataforma inteligente para análise de criptomoedas que monitora tendências, identifica movimentos e otimiza decisões."
   },
   {
-    name: "CupoGram",
+    name: "CupomGram",
     text: "Localizador inteligente de cupons e ofertas que encontra descontos reais, promoções válidas e melhores oportunidades automaticamente."
   },
   {
@@ -73,3 +73,4 @@ window.addEventListener("resize", updateSlider);
 
 /* INICIALIZAÇÃO */
 updateSlider();
+
