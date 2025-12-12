@@ -2,20 +2,29 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
     <title>Pagamento NeoGram</title>
+
     <style>
-      body {
+      html, body {
         margin: 0;
         padding: 0;
+        height: 100%;
         background: #000;
       }
+
       iframe {
-        width: 100%;
-        height: 100vh;
+        width: 100vw;
+        height: 100dvh; /* melhor no mobile */
         border: none;
+        display: block;
       }
     </style>
   </head>
+
   <body>
     <script>
       function getUid() {
@@ -30,29 +39,23 @@
           "<h2 style='color:white;text-align:center;margin-top:40px'>❌ Nenhum UID informado.</h2>";
       } else {
         document.body.innerHTML = `
-          <iframe src="https://betgram.com.br/payments?uid=${uid}"></iframe>
+          <iframe src="https://betgram.com.br/payments?uid=${encodeURIComponent(uid)}"></iframe>
         `;
       }
+
+      window.addEventListener("message", (event) => {
+        // Segurança básica: aceite só do domínio correto
+        if (event.origin !== "https://betgram.com.br") return;
+
+        if (event.data === "fechar_pagamento") {
+          window.close();
+          try {
+            window.open("", "_self");
+            window.close();
+          } catch (e) {}
+          window.parent.postMessage("fechamento_falhou", "*");
+        }
+      });
     </script>
-    <script>
-  window.addEventListener("message", (event) => {
-    if (event.data === "fechar_pagamento") {
-      console.log("Fechando janela via postMessage…");
-
-      // Tenta fechar a aba normalmente
-      window.close();
-
-      // Caso a aba não permita fechar (navegadores com bloqueio)
-      try {
-        window.open("", "_self");
-        window.close();
-      } catch (e) {}
-
-      // Último fallback: envia de volta pro chamador que pode fechar
-      // (TalkGram pode reagir se quiser futuramente)
-      window.parent.postMessage("fechamento_falhou", "*");
-    }
-  });
-</script>
   </body>
 </html>
