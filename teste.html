@@ -3,85 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Monitoramento</title>
+    <title>Painel G10 - Streaming</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            overflow: hidden;
-        }
-        /* Estilização do Iframe para ocupar a tela toda */
-        .main-frame {
-            width: 100%;
-            height: 100vh;
-            border: none;
-        }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: Arial, sans-serif; }
+        .main-frame { width: 100%; height: 100vh; border: none; }
+        .painel-overlay { position: fixed; z-index: 9999; pointer-events: auto; }
     </style>
 </head>
 <body>
 
-    <script type="text/javascript">
-        var _Hasync= _Hasync|| [];
-        _Hasync.push(['Histats.start', '1,4965742,4,0,0,0,00010000']);
-        _Hasync.push(['Histats.fasi', '1']);
-        _Hasync.push(['Histats.track_hits', '']);
-        (function() {
-            var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-            hs.src = ('//s10.histats.com/js15_as.js');
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-        })();
-    </script>
-    <noscript>
-        <a href="/" target="_blank" style="display:none !important;">
-            <img src="//sstatic1.histats.com/0.gif?4965742&101" alt="stats" border="0" style="display:none !important;">
-        </a>
-    </noscript>
-
-    <iframe class="main-frame" src="https://streamrdc.xyz/embed/player.php?id=espn" allow="encrypted-media" allowfullscreen></iframe>
-
-    <div style="position: fixed; top: 10px; left: 10px; z-index: 999999; background: rgba(0, 0, 0, 0.9); padding: 10px; border-radius: 8px; font-family: Arial, sans-serif; color: white; border: 1px solid rgb(40, 255, 187); font-size: 12px; min-width: 110px; box-shadow: rgba(0, 0, 0, 0.5) 2px 2px 10px;">
-        <div style="color:#28ffbb; font-weight:bold; margin-bottom:5px; border-bottom:1px solid #444; display:flex; justify-content:space-between;">
-            CICLOS 
-        </div>
-        <div style="color:#00ff00; margin-top:5px;">GANHOS: <span id="stat-wins">0</span></div>
-        <div style="color:#ff4444; margin-bottom:8px;">QUEBRAS: <span id="stat-loss">0</span></div>
-        <button id="reset-stats" style="width:100%; background:#444; color:#fff; border:1px solid #666; border-radius:4px; cursor:pointer; font-size:10px; padding:2px 0;">RESETAR</button>
+    <div class="painel-overlay" style="top: 10px; left: 10px; background: rgba(0,0,0,0.9); padding: 10px; border-radius: 8px; border: 1px solid #28ffbb; color: white; min-width: 110px;">
+        <div style="color:#28ffbb; font-weight:bold; border-bottom:1px solid #444; margin-bottom:5px;">CICLOS</div>
+        <div style="color:#00ff00;">GANHOS: <span id="stat-wins">0</span></div>
+        <div style="color:#ff4444;">QUEBRAS: <span id="stat-loss">0</span></div>
     </div>
 
-    <div id="painel-v26" style="position: fixed; top: 10px; right: 120px; z-index: 999999; background: rgba(0, 0, 0, 0.95); padding: 10px 15px; border-radius: 10px; font-family: Arial, sans-serif; color: white; display: flex; gap: 12px; border: 2px solid rgb(40, 255, 187); pointer-events: auto;">
-        <div id="fechar-x" style="position:absolute; top:-10px; right:-10px; background:#ff0000; color:white; border-radius:50%; width:22px; height:22px; text-align:center; line-height:20px; cursor:pointer; font-weight:bold; border:2px solid white; font-size:12px;">✕</div>
-        <div style="font-size:10px; color:#28ffbb; font-weight:bold; writing-mode:vertical-rl; text-orientation:mixed; margin-right:5px;">FOCO G10</div>
-        
-        <div id="box-d1" style="border:2px solid red; border-radius:8px; padding:5px 12px; text-align:center; min-width:70px;">
+    <iframe 
+        src="https://streamrdc.xyz/embed/player.php?id=bbb26-1" 
+        class="main-frame" 
+        allow="autoplay; encrypted-media; fullscreen" 
+        allowfullscreen
+        sandbox="allow-forms allow-scripts allow-same-origin allow-presentation">
+    </iframe>
+
+    <div id="painel-v26" class="painel-overlay" style="top: 10px; right: 20px; background: rgba(0,0,0,0.95); padding: 10px 15px; border-radius: 10px; display: flex; gap: 12px; border: 2px solid #28ffbb;">
+        <div style="font-size:10px; color:#28ffbb; font-weight:bold; writing-mode:vertical-rl;">FOCO G10</div>
+        <div style="border:2px solid red; border-radius:8px; padding:5px 12px; text-align:center;">
             <div style="font-size:9px;">1ª D</div>
-            <div id="val-d1" style="font-size:20px; font-weight:bold;">0</div>
-            <div id="lvl-d1" style="font-size:9px; color:#aaa;">LVL: 0</div>
-        </div>
-
-        <div id="box-d2" style="border:2px solid red; border-radius:8px; padding:5px 12px; text-align:center; min-width:70px;">
-            <div style="font-size:9px;">2ª D</div>
-            <div id="val-d2" style="font-size:20px; font-weight:bold;">0</div>
-            <div id="lvl-d2" style="font-size:9px; color:#aaa;">LVL: 0</div>
-        </div>
-
-        <div id="box-d3" style="border:2px solid red; border-radius:8px; padding:5px 12px; text-align:center; min-width:70px;">
-            <div style="font-size:9px;">3ª D</div>
-            <div id="val-d3" style="font-size:20px; font-weight:bold;">0</div>
-            <div id="lvl-d3" style="font-size:9px; color:#aaa;">LVL: 0</div>
+            <div style="font-size:20px; font-weight:bold;">0</div>
         </div>
     </div>
-
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" data-cf-beacon='{"token": "356e0fbd564949a496fd742dd9fda462"}' crossorigin="anonymous"></script>
-
-    <script>
-        // Lógica simples para fechar o painel
-        document.getElementById('fechar-x').onclick = function() {
-            document.getElementById('painel-v26').style.display = 'none';
-        };
-    </script>
 
 </body>
 </html>
