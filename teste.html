@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Stream Manager - WebBot Pro</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #0b0b0b; color: white; margin: 0; overflow: hidden; }
+        
+        /* Container do Vídeo (Tela Cheia) */
+        .video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        /* Camada de Interação (Overlay) */
+        .overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.85); z-index: 10; 
+            display: flex; justify-content: center; align-items: center; 
+        }
+        
+        .modal { background: #1e1e1e; padding: 30px; border-radius: 15px; width: 400px; text-align: center; border: 1px solid #ffb80c; }
+        
+        .btn { display: block; width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; text-decoration: none; transition: 0.2s; }
+        .btn-yes { background: #2e7d32; color: white; }
+        .btn-no { background: #c62828; color: white; }
+        .btn-action { background: #ffb80c; color: black; margin-top: 20px; }
+        
+        .hidden { display: none !important; }
+        .step-2 { display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- O Player fica sempre ao fundo -->
+    <div class="video-wrapper">
+        <iframe id="player-iframe" src="https://videoplayer.betfair.bet.br/GetPlayer.do?eID=35602872"></iframe>
+    </div>
+
+    <!-- Camada de Verificação -->
+    <div id="overlay" class="overlay">
+        
+        <!-- Passo 1: Pergunta Inicial -->
+        <div id="step-1" class="modal">
+            <h2 style="color:#ffb80c">Verificação de Sinal</h2>
+            <p>Você está conseguindo ver o <b>Vídeo Real</b> ao fundo ou apenas o <b>Radar</b>?</p>
+            <button class="btn btn-yes" onclick="liberarTelaCheia()">ESTOU VENDO O VÍDEO</button>
+            <button class="btn btn-no" onclick="mostrarInstrucoes()">VEJO APENAS O RADAR</button>
+        </div>
+
+        <!-- Passo 2: Ações para liberar o sinal -->
+        <div id="step-2" class="modal" style="display:none;">
+            <h2 style="color:#ffb80c">Sinal Bloqueado</h2>
+            <p style="font-size:14px; color:#ccc;">Para liberar o vídeo, você precisa ter uma conta ativa com login realizado.</p>
+            
+            <button class="btn btn-action" onclick="abrirLogin()">1. FAZER LOGIN AGORA</button>
+            <a href="https://register.betfair.bet.br/" target="_blank" class="btn" style="background:#444; color:white;">2. CRIAR CONTA GRATUITA</a>
+            
+            <hr style="border:0; border-top:1px solid #444; margin:20px 0;">
+            <button class="btn btn-yes" onclick="recarregarSinal()">JÁ LOGUEI / RECARREGAR</button>
+        </div>
+
+    </div>
+
+    <script>
+        const eID = "35602872";
+        const playerUrl = `https://videoplayer.betfair.bet.br/GetPlayer.do?eID=${eID}`;
+
+        function liberarTelaCheia() {
+            // Remove o overlay e deixa o iframe visível
+            document.getElementById('overlay').classList.add('hidden');
+        }
+
+        function mostrarInstrucoes() {
+            document.getElementById('step-1').style.display = 'none';
+            document.getElementById('step-2').style.display = 'block';
+        }
+
+        function abrirLogin() {
+            // Usa o seu link de SSO limpo que você descobriu
+            const authUrl = `https://identitysso.betfair.bet.br/view/login?product=bfrb_web&url=${encodeURIComponent(playerUrl)}`;
+            window.open(authUrl, "LoginBetfair", "width=600,height=700");
+        }
+
+        function recarregarSinal() {
+            // Força o refresh do iframe para capturar o novo cookie de sessão
+            const frame = document.getElementById('player-iframe');
+            frame.src = playerUrl;
+            
+            // Volta para o passo 1 para o usuário confirmar se agora o vídeo aparece
+            document.getElementById('step-2').style.display = 'none';
+            document.getElementById('step-1').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
